@@ -93,14 +93,16 @@ class IssueTrackerManager(object):
     # Get labels from LabelStore.
     labels = list(issue.labels)
 
-    project_id = local_config.IssueTrackerConfig().get(self.project_name)['project_id_key']
-
+    project_config = local_config.IssueTrackerConfig().get(self.project_name)
+    project_id = project_config['project_id_key']
+    issue_type = project_config['issue_type']
+    
     fields = {
         'summary': issue.title,
         'description': issue.body,
         'labels': labels,
         'project': project_id,
-        'issuetype': 'Bug'
+        'issuetype': issue_type,
     }
 
     if issue.assignee is not None:
