@@ -95,14 +95,16 @@ class IssueTrackerManager(object):
 
     project_config = local_config.IssueTrackerConfig().get(self.project_name)
     project_id = project_config['project_id_key']
-    issue_type = project_config['issue_type']
-    
+    issue_type = project_config['issue_type_id']
+
     fields = {
         'summary': issue.title,
         'description': issue.body,
         'labels': labels,
         'project': project_id,
-        'issuetype': issue_type,
+        'issuetype': {
+          "id": issue_type
+        },
     }
 
     if issue.assignee is not None:

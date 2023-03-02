@@ -24,8 +24,9 @@ test-project-jira:
   # Jira project key or ID
   project_id_key: TESTPROJECT
   # Each project can have different IssueTypes.
-  # see https://$jira_http/rest/api/2/project/$project_id_key
-  issue_type: Task
+  # see https://$jira_http/rest/api/2/project/$project_id_key for
+  # your project IssueType IDs
+  issue_type_id: 10050
   policies:
     status:
       # REQUIRED: Status mappings.
