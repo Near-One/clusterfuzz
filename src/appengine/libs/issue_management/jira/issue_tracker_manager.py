@@ -100,9 +100,7 @@ class IssueTrackerManager(object):
         'description': issue.body,
         'labels': labels,
         'project': project_id,
-        'issuetype': {
-            'name': 'Bug',
-        }
+        'issuetype': 'Bug'
     }
 
     if issue.assignee is not None:
