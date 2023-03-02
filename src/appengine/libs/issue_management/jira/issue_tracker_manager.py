@@ -85,8 +85,10 @@ class IssueTrackerManager(object):
     watchers = list(issue.ccs)
 
     # Jira weirdness, update watchers this way.
-    for watcher in watchers:
-      self.client.add_watcher(issue.jira_issue, watcher)
+    # TODO: fix for cases when no user names avaiable
+    # Attlasian accounts, with emailAddress, accountId and displayName only
+    # for watcher in watchers:
+    #  self.client.add_watcher(issue.jira_issue, watcher)
 
   def _get_issue_fields(self, issue):
     """Get issue fields to populate the ticket"""
