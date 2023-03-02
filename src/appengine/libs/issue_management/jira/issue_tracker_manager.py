@@ -128,7 +128,7 @@ class IssueTrackerManager(object):
 
     fields = self._get_issue_fields(issue)
     jira_issue = self.client.create_issue(fields=fields)
-    self._add_watchers(jira_issue)
+    self._add_watchers(issue)
     issue.jira_issue = jira_issue
 
   def _update(self, issue):
