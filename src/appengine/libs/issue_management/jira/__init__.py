@@ -169,7 +169,6 @@ class IssueTracker(issue_tracker.IssueTracker):
 
   def new_issue(self):
     jira_issue = self._itm.create()
-    logs.log(f'New jira issue created. Id type: {type(jira_issue)}, value: {jira_issue}.')
     return Issue(self._itm, jira_issue)
 
   def get_issue(self, issue_id):

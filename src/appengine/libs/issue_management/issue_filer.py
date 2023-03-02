@@ -334,7 +334,7 @@ def file_issue(testcase,
       is_security=testcase.security_flag, is_crash=is_crash)
 
   issue = issue_tracker.new_issue()
-  logs.log(f"Instantiated a new issue object {issue.id}: {issue}")
+  logs.log(f"Instantiated a new issue object with ID: {issue.id}")
 
   issue.title = data_handler.get_issue_summary(testcase)
   issue.body = data_handler.get_issue_description(
@@ -467,7 +467,7 @@ def file_issue(testcase,
   issue.reporter = user_email
 
   recovered_exception = None
-  logs.log(f"Prepared issue object: {issue}")
+
   try:
     issue.save()
   except Exception as e:

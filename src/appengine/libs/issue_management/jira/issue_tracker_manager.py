@@ -109,9 +109,9 @@ class IssueTrackerManager(object):
 
     if issue.assignee is not None:
       if isinstance(issue.assignee, jira.resources.Resource):
-        assignee = {'name': issue.assignee.name}
+        assignee = {'displayName': issue.assignee.displayName}
       else:
-        assignee = {'name': issue.assignee}
+        assignee = {'displayName': issue.assignee}
       fields['assignee'] = assignee
 
     # Again brittle - need to pull these strings from policy.
@@ -146,7 +146,7 @@ class IssueTrackerManager(object):
     watchlist = self.client.watchers(issue)
     watchers = []
     for watcher in watchlist.watchers:
-      watchers.append(watcher.name)
+      watchers.append(watcher.displayName)
     return watchers
 
   def get_issue(self, issue_id):
