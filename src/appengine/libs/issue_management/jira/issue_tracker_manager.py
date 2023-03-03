@@ -97,15 +97,18 @@ class IssueTrackerManager(object):
 
     project_config = local_config.IssueTrackerConfig().get(self.project_name)
     project = project_config['project_key_id']
-    issue_type = project_config['issue_type_id']
 
     fields = {
         'summary': issue.title,
         'description': issue.body,
         'labels': labels,
         'project': project,
-        'issuetype': issue_type,
     }
+
+    # Set IssueType only for new Jira issues
+    if issue.id == -1:
+      issue_type = project_config['issue_type_id']
+      fields.update({'issuetype': issue_type})
 
     if issue.assignee is not None:
       if isinstance(issue.assignee, jira.resources.Resource):
